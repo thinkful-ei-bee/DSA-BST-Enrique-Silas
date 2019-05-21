@@ -89,9 +89,9 @@ function heightFinder(tree, count=1){
 // console.log(heightFinder(globalTree))
 
 function treeIsBST(tree){
-  console.log(tree.key)
+ 
     if (tree.right === null && tree.left === null){
-      console.log('here')
+     
       return true;
     }
     if (tree !== null){
@@ -106,11 +106,22 @@ function treeIsBST(tree){
     
 }
 
-console.log(treeIsBST(globalTree))
+// console.log(treeIsBST(globalTree))
 
   //     3
-  // 1       4
+  //  1       4
   // 2           6
   //          5      9
   //               7
   //                 8
+
+
+  function findThirdLargest(tree){
+   let biggestItem = tree._findMax()
+   tree.remove(biggestItem.key)
+   let secondBiggest= tree._findMax()
+   tree.remove(secondBiggest.key)
+   let thirdBiggest = tree._findMax()
+   return thirdBiggest.key
+  }
+  console.log(findThirdLargest(globalTree))
