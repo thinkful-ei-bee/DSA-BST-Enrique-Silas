@@ -8,7 +8,7 @@ const BinarySearchTree = require('./BST');
           2         6
                    5    9
                        7
- 
+                        8
 
             E
           A   S
@@ -50,9 +50,15 @@ function easyQuestion() {
 }
 
 const globalTree = new BinarySearchTree;
+globalTree.insert(3, 3);
+globalTree.insert(1, 1);
+globalTree.insert(4, 4);
+globalTree.insert(6, 6);
+globalTree.insert(9, 9);
+globalTree.insert(2, 2);
 globalTree.insert(5, 5);
-globalTree.insert(4, 5);
-
+globalTree.insert(7, 7);
+globalTree.insert(8,8);
 function tree(t) {
   //console.log(t);
   if (!t) {
@@ -61,5 +67,26 @@ function tree(t) {
   return tree(t.left) + t.value + tree(t.right);
 }
 
-easyQuestion();
+// easyQuestion();
 //console.log(tree(globalTree));
+
+
+
+
+function heightFinder(tree, count=1){
+
+  if(tree === null){
+
+    return count;
+  }
+
+  if(tree !==  null){
+
+    return Math.max(heightFinder(tree.left, count++), heightFinder(tree.right, count++))
+  }
+
+
+
+}
+
+console.log(heightFinder(globalTree))
