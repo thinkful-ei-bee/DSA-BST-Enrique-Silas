@@ -59,6 +59,9 @@ globalTree.insert(2, 2);
 globalTree.insert(5, 5);
 globalTree.insert(7, 7);
 globalTree.insert(8,8);
+
+
+
 function tree(t) {
   //console.log(t);
   if (!t) {
@@ -72,21 +75,42 @@ function tree(t) {
 
 
 
-
+//time complexity is O(n) because it grows proportionally to the size of the tree being passed in
 function heightFinder(tree, count=1){
 
   if(tree === null){
-
     return count;
   }
-
   if(tree !==  null){
-
     return Math.max(heightFinder(tree.left, count++), heightFinder(tree.right, count++))
   }
-
-
-
 }
 
-console.log(heightFinder(globalTree))
+// console.log(heightFinder(globalTree))
+
+function treeIsBST(tree){
+  console.log(tree.key)
+    if (tree.right === null && tree.left === null){
+      console.log('here')
+      return true;
+    }
+    if (tree !== null){
+      if(tree.right !== null && tree.right.key > tree.key){
+        return treeIsBST(tree.right)
+      }
+      if(tree.left !== null && tree.left.key < tree.key){
+        return treeIsBST(tree.left)
+      }
+    }
+      return false;
+    
+}
+
+console.log(treeIsBST(globalTree))
+
+  //     3
+  // 1       4
+  // 2           6
+  //          5      9
+  //               7
+  //                 8
