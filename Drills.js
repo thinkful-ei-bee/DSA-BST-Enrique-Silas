@@ -123,9 +123,7 @@ function findThirdLargest(tree){
 //     3
 //  1       4
 // 2           6
-//          5      9
-//               7
-//                 8
+//  2.5        5      9
 
 function isBalanced(tree, count=1) {
   if (!tree.left && !tree.right) {
@@ -144,3 +142,44 @@ function isBalanced(tree, count=1) {
 }
 
 console.log(isBalanced(globalTree));
+
+/*
+Tree A: 
+[
+     [3],
+   [1, 5],
+[0, 2, 4, 6],
+]
+
+Tree B: 
+[
+     [3],
+   [1, 5],
+[0, 2, 4, 6],
+]
+ */
+
+// arrA: [3, 5, 4, 6, 1, 0, 2]
+// arrB: [3, 1, 5, 2, 4, 6, 0]
+// A.1: [1, 0, 2]
+// B.1: [1, 2, 0]
+
+function matchTrees(arrA, arrB, multiA=[], multiB=[], lastNodeA, lastNodeB) {
+  // multi array
+  // take the multi.push(arrA[0])
+
+  // if diff lengths, false
+  // if both are empty, return true
+  // if index 0 of each array is different, return false
+
+  // You take all values that are less than the root value,
+  // And create sub arrays that contain values less than the root value
+  // If the arrays match, check all values that are greater than the root
+  // If they do not match, return false
+
+  if (!arrA && !arrB) {
+    return true;
+  }
+
+  if ()
+}
