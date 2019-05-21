@@ -32,33 +32,33 @@ function easyQuestion() {
   BST.insert(5, 5);
   BST.insert(7, 7);
 
-//   BST.insert('E');
-//   BST.insert('A');
-//   BST.insert('S');
-//   BST.insert('Y');
-//   BST.insert('Q');
-//   BST.insert('U');
-//   BST.insert('E');
-//   BST.insert('S');
-//   BST.insert('T');
-//   BST.insert('I');
-//   BST.insert('O');
-//   BST.insert('N');
+  //   BST.insert('E');
+  //   BST.insert('A');
+  //   BST.insert('S');
+  //   BST.insert('Y');
+  //   BST.insert('Q');
+  //   BST.insert('U');
+  //   BST.insert('E');
+  //   BST.insert('S');
+  //   BST.insert('T');
+  //   BST.insert('I');
+  //   BST.insert('O');
+  //   BST.insert('N');
 
   //console.log(BST);
   console.log(tree(BST));
 }
 
 const globalTree = new BinarySearchTree;
+globalTree.insert(5, 5);
 globalTree.insert(3, 3);
-globalTree.insert(1, 1);
+globalTree.insert(7, 7);
+globalTree.insert(2, 2);
 globalTree.insert(4, 4);
 globalTree.insert(6, 6);
+globalTree.insert(8, 8);
+globalTree.insert(1, 1);
 globalTree.insert(9, 9);
-globalTree.insert(2, 2);
-globalTree.insert(5, 5);
-globalTree.insert(7, 7);
-globalTree.insert(8,8);
 
 
 
@@ -82,7 +82,7 @@ function heightFinder(tree, count=1){
     return count;
   }
   if(tree !==  null){
-    return Math.max(heightFinder(tree.left, count++), heightFinder(tree.right, count++))
+    return Math.max(heightFinder(tree.left, count++), heightFinder(tree.right, count++));
   }
 }
 
@@ -90,38 +90,57 @@ function heightFinder(tree, count=1){
 
 function treeIsBST(tree){
  
-    if (tree.right === null && tree.left === null){
+  if (tree.right === null && tree.left === null){
      
-      return true;
+    return true;
+  }
+  if (tree !== null){
+    if(tree.right !== null && tree.right.key > tree.key){
+      return treeIsBST(tree.right);
     }
-    if (tree !== null){
-      if(tree.right !== null && tree.right.key > tree.key){
-        return treeIsBST(tree.right)
-      }
-      if(tree.left !== null && tree.left.key < tree.key){
-        return treeIsBST(tree.left)
-      }
+    if(tree.left !== null && tree.left.key < tree.key){
+      return treeIsBST(tree.left);
     }
-      return false;
+  }
+  return false;
     
 }
 
 // console.log(treeIsBST(globalTree))
 
-  //     3
-  //  1       4
-  // 2           6
-  //          5      9
-  //               7
-  //                 8
 
 
-  function findThirdLargest(tree){
-   let biggestItem = tree._findMax()
-   tree.remove(biggestItem.key)
-   let secondBiggest= tree._findMax()
-   tree.remove(secondBiggest.key)
-   let thirdBiggest = tree._findMax()
-   return thirdBiggest.key
+function findThirdLargest(tree){
+  let biggestItem = tree._findMax();
+  tree.remove(biggestItem.key);
+  let secondBiggest= tree._findMax();
+  tree.remove(secondBiggest.key);
+  let thirdBiggest = tree._findMax();
+  return thirdBiggest.key;
+}
+//console.log(findThirdLargest(globalTree));
+
+//     3
+//  1       4
+// 2           6
+//          5      9
+//               7
+//                 8
+
+function isBalanced(tree, count=1) {
+  if (!tree.left && !tree.right) {
+    return count;
   }
-  console.log(findThirdLargest(globalTree))
+
+  if (!tree.left) {
+    return isBalanced(tree.right, count+1);
+  }
+
+  if (!tree.right) {
+    return isBalanced(tree.left, count+1);
+  }
+
+  return isBalanced(tree.left, count + 1) === isBalanced(tree.right, count + 1);
+}
+
+console.log(isBalanced(globalTree));
